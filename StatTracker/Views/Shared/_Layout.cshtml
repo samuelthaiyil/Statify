@@ -9,15 +9,24 @@
 </head>
 <body>
     <header>
-        
-     </header>
+    </header>
+    <div class="side-nav">
+        <ul>
+            <li>
+                <a asp-area="" asp-controller="ManagePlayers" asp-action="Index">Privacy</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="ManageGames" asp-action="Index">Privacy</a>
+            </li>
+        </ul>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer text-muted">
         <div class="container">
             &copy; 2021 - StatTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
