@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace StatTracker.Models
 {
-    public class Player
+    public class Game
     {
-        public int PlayerId { get; set; }
+        public int GameId { get; set; }
 
         [Required]
-        public string Position { get; set; }
-
+        public string GameLocation { get; set; }
+        
         [Required]
-        public string PlayerName { get; set; }
+        public string GameDate { get; set;  }
 
-        public int PlayerHeightCm { get; set; }
+        public string GameType { get; set; }
     }
 }

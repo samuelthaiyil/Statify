@@ -66,9 +66,6 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-a {
-    text-decoration: none;
-}
 
 .side-nav {
     position: absolute;
@@ -77,7 +74,27 @@ a {
     background-color: red;
     height: 100vh;
     display: inline-flex;
-    padding-right: 60px;
+    width: 250px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+    background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
 }

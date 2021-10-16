@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - StatTracker</title>
+    <title>@ViewData["Title"] Statify</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -11,12 +11,25 @@
     <header>
     </header>
     <div class="side-nav">
-        <ul>
-            <li>
-                <a asp-area="" asp-controller="ManagePlayers" asp-action="Index">Privacy</a>
+        <ul class="mt-5">
+             
+            <li class="my-3">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img class="ml-4 mr-4 align-bottom" src="~/assets/home_white_24dp.svg" />
+                    Splash Screen
+                </a>
             </li>
-            <li>
-                <a asp-area="" asp-controller="ManageGames" asp-action="Index">Privacy</a>
+            <li class="my-3">
+                <a asp-area="" asp-controller="ManagePlayers" asp-action="Index">
+                    <img class="ml-4 mr-4" src="~/assets/people_white_24dp.svg" />
+                    Manage Players
+                </a>
+            </li>
+            <li class="my-3">
+                <a asp-area="" asp-controller="ManageGames" asp-action="Index">
+                    <img class="ml-4 mr-4" src="~/assets/event_white_24dp.svg" />
+                    Manage Games
+                </a>
             </li>
         </ul>
     </div>
@@ -28,7 +41,7 @@
 
     <footer class="footer text-muted">
         <div class="container">
-            &copy; 2021 - StatTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Statify - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
