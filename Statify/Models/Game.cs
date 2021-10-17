@@ -18,6 +18,9 @@ namespace StatTracker.Models
 
         public string GameType { get; set; }
 
+        public string Opponent { get; set; }
+
         public List<GameDetail> GameDetails { get; set; }
+
     }
 }

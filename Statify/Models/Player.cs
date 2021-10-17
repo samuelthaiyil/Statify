@@ -19,5 +19,10 @@ namespace StatTracker.Models
         public int PlayerHeightCm { get; set; }
 
         public List<GameDetail> GameDetails { get; set; }
+
+        // Store players best game
+        public int GameId { get; set; }
+
+        public Game Game { get; set; }
     }
 }

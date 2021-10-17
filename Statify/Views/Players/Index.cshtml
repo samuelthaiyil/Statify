@@ -4,22 +4,29 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="mt-5">Manage Players</h1>
+<h1>Manage Players</h1>
 
-<p>
-    <a class="bg-dark text-white p4" asp-action="Create">Create New</a>
-</p>
+<div class="d-flex flex-row my-5">
+    <h1 class="text-dark mr-4">Manage Games</h1>
+    <a class="text-dark align-self-center" asp-action="Create">
+        Create New
+        <img class="mr-2 align-bottom" src="~/assets/add_black_24dp.svg" />
+    </a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-               Position
+                @Html.DisplayNameFor(model => model.Position)
             </th>
             <th>
-                Player Name
+                @Html.DisplayNameFor(model => model.PlayerName)
             </th>
             <th>
-                Player Height (cm)
+                @Html.DisplayNameFor(model => model.PlayerHeightCm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game)
             </th>
             <th></th>
         </tr>
@@ -35,6 +42,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PlayerHeightCm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.GameDate)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |

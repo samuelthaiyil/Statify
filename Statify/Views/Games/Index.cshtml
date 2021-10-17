@@ -4,22 +4,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="mt-5">Manage Games</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="d-flex flex-row my-5">
+    <h1 class="text-dark mr-4">Manage Games</h1>
+    <a class="text-dark align-self-center" asp-action="Create">
+        Create New
+       <img class="mr-2 align-bottom" src="~/assets/add_black_24dp.svg" />
+    </a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-               Game Location
+                Game Location
             </th>
             <th>
                 Game Date
             </th>
             <th>
                 Game Type
+            </th>
+            <th>
+                Opponent
             </th>
             <th></th>
         </tr>
@@ -37,9 +42,12 @@
                 @Html.DisplayFor(modelItem => item.GameType)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.GameId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GameId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.GameId">Delete</a>
+                @Html.DisplayFor(modelItem => item.Opponent)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GameId"><img src="~/assets/edit_black_24dp.svg" /></a> |
+                <a asp-action="Details" asp-route-id="@item.GameId"><img src="~/assets/info_black_24dp.svg" /></a> |
+                <a asp-action="Delete" asp-route-id="@item.GameId"><img src="~/assets/delete_black_24dp.svg" />Delete</a>
             </td>
         </tr>
 }

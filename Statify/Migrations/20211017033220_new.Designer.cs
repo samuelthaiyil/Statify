@@ -10,7 +10,7 @@ using Statify.Data;
 namespace Statify.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211017012457_new")]
+    [Migration("20211017033220_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,6 +239,9 @@ namespace Statify.Migrations
                     b.Property<string>("GameType")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Opponent")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("GameId");
 
                     b.ToTable("Games");
@@ -254,10 +257,10 @@ namespace Statify.Migrations
                     b.Property<int>("Assists")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlayerId")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("Points")
@@ -282,6 +285,9 @@ namespace Statify.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PlayerHeightCm")
                         .HasColumnType("int");
 
@@ -294,6 +300,8 @@ namespace Statify.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PlayerId");
+
+                    b.HasIndex("GameId");
 
                     b.ToTable("Players");
                 });
@@ -351,13 +359,32 @@ namespace Statify.Migrations
 
             modelBuilder.Entity("StatTracker.Models.GameDetail", b =>
                 {
-                    b.HasOne("StatTracker.Models.Game", null)
+                    b.HasOne("StatTracker.Models.Game", "Game")
                         .WithMany("GameDetails")
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("StatTracker.Models.Player", null)
+                    b.HasOne("StatTracker.Models.Player", "Player")
                         .WithMany("GameDetails")
-                        .HasForeignKey("PlayerId");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("StatTracker.Models.Player", b =>
+                {
+                    b.HasOne("StatTracker.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
                 });
 
             modelBuilder.Entity("StatTracker.Models.Game", b =>

@@ -54,26 +54,12 @@ namespace Statify.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GameLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GameDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GameType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    GameType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Opponent = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Games", x => x.GameId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Players",
-                columns: table => new
-                {
-                    PlayerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlayerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlayerHeightCm = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Players", x => x.PlayerId);
                 });
 
             migrationBuilder.CreateTable(
@@ -183,16 +169,38 @@ namespace Statify.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Players",
+                columns: table => new
+                {
+                    PlayerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlayerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlayerHeightCm = table.Column<int>(type: "int", nullable: false),
+                    GameId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Players", x => x.PlayerId);
+                    table.ForeignKey(
+                        name: "FK_Players_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GameDetails",
                 columns: table => new
                 {
                     GameDetailId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    PlayerId = table.Column<int>(type: "int", nullable: false),
+                    GameId = table.Column<int>(type: "int", nullable: false),
                     Points = table.Column<int>(type: "int", nullable: false),
                     Rebounds = table.Column<int>(type: "int", nullable: false),
-                    Assists = table.Column<int>(type: "int", nullable: false),
-                    GameId = table.Column<int>(type: "int", nullable: true),
-                    PlayerId = table.Column<int>(type: "int", nullable: true)
+                    Assists = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -259,6 +267,11 @@ namespace Statify.Migrations
                 name: "IX_GameDetails_PlayerId",
                 table: "GameDetails",
                 column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_GameId",
+                table: "Players",
+                column: "GameId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -288,10 +301,10 @@ namespace Statify.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Games");
+                name: "Players");
 
             migrationBuilder.DropTable(
-                name: "Players");
+                name: "Games");
         }
     }
 }

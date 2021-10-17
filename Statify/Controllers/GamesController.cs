@@ -54,7 +54,7 @@ namespace Statify.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GameId,GameLocation,GameDate,GameType")] Game game)
+        public async Task<IActionResult> Create([Bind("GameId,GameLocation,GameDate,GameType,Opponent")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Statify.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GameId,GameLocation,GameDate,GameType")] Game game)
+        public async Task<IActionResult> Edit(int id, [Bind("GameId,GameLocation,GameDate,GameType,Opponent")] Game game)
         {
             if (id != game.GameId)
             {
