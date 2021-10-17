@@ -47,6 +47,16 @@ th:first-child {
         border-bottom-left-radius: 10px;
 }
 
+.player-card {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+    padding: 20px;
+    margin: 10px;
+}
+
 th:last-child {
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;

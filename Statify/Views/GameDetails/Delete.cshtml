@@ -9,7 +9,6 @@
 <h1>Delete Player Stat</h1>
 
 <div>
-    <h4>GameDetail</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -47,6 +46,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="GameDetailId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a class="text-dark" asp-action="Index">Back to List</a>
     </form>
 </div>
