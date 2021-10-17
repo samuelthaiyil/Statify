@@ -22,8 +22,7 @@ namespace Statify.Controllers
         // GET: Players
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Players.Include(p => p.Game);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Players.ToListAsync());
         }
 
         // GET: Players/Details/5
@@ -35,7 +34,6 @@ namespace Statify.Controllers
             }
 
             var player = await _context.Players
-                .Include(p => p.Game)
                 .FirstOrDefaultAsync(m => m.PlayerId == id);
             if (player == null)
             {
@@ -48,7 +46,6 @@ namespace Statify.Controllers
         // GET: Players/Create
         public IActionResult Create()
         {
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "GameDate");
             return View();
         }
 
@@ -57,7 +54,7 @@ namespace Statify.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlayerId,Position,PlayerName,PlayerHeightCm,GameId")] Player player)
+        public async Task<IActionResult> Create([Bind("PlayerId,Position,PlayerName,PlayerHeightCm")] Player player)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +62,6 @@ namespace Statify.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "GameDate", player.GameId);
             return View(player);
         }
 
@@ -82,7 +78,6 @@ namespace Statify.Controllers
             {
                 return NotFound();
             }
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "GameDate", player.GameId);
             return View(player);
         }
 
@@ -91,7 +86,7 @@ namespace Statify.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlayerId,Position,PlayerName,PlayerHeightCm,GameId")] Player player)
+        public async Task<IActionResult> Edit(int id, [Bind("PlayerId,Position,PlayerName,PlayerHeightCm")] Player player)
         {
             if (id != player.PlayerId)
             {
@@ -118,7 +113,6 @@ namespace Statify.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "GameDate", player.GameId);
             return View(player);
         }
 
@@ -131,7 +125,6 @@ namespace Statify.Controllers
             }
 
             var player = await _context.Players
-                .Include(p => p.Game)
                 .FirstOrDefaultAsync(m => m.PlayerId == id);
             if (player == null)
             {

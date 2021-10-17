@@ -10,7 +10,7 @@ using Statify.Data;
 namespace Statify.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211017141146_new")]
+    [Migration("20211017190905_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -285,9 +285,6 @@ namespace Statify.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PlayerHeightCm")
                         .HasColumnType("int");
 
@@ -300,8 +297,6 @@ namespace Statify.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PlayerId");
-
-                    b.HasIndex("GameId");
 
                     b.ToTable("Players");
                 });
@@ -374,17 +369,6 @@ namespace Statify.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("StatTracker.Models.Player", b =>
-                {
-                    b.HasOne("StatTracker.Models.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
                 });
 
             modelBuilder.Entity("StatTracker.Models.Game", b =>

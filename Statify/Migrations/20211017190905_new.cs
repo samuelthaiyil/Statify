@@ -63,6 +63,21 @@ namespace Statify.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Players",
+                columns: table => new
+                {
+                    PlayerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlayerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlayerHeightCm = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Players", x => x.PlayerId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -169,28 +184,6 @@ namespace Statify.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Players",
-                columns: table => new
-                {
-                    PlayerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlayerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlayerHeightCm = table.Column<int>(type: "int", nullable: false),
-                    GameId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Players", x => x.PlayerId);
-                    table.ForeignKey(
-                        name: "FK_Players_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "GameId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GameDetails",
                 columns: table => new
                 {
@@ -210,13 +203,13 @@ namespace Statify.Migrations
                         column: x => x.GameId,
                         principalTable: "Games",
                         principalColumn: "GameId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GameDetails_Players_PlayerId",
                         column: x => x.PlayerId,
                         principalTable: "Players",
                         principalColumn: "PlayerId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -267,11 +260,6 @@ namespace Statify.Migrations
                 name: "IX_GameDetails_PlayerId",
                 table: "GameDetails",
                 column: "PlayerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Players_GameId",
-                table: "Players",
-                column: "GameId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -301,10 +289,10 @@ namespace Statify.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Players");
+                name: "Games");
 
             migrationBuilder.DropTable(
-                name: "Games");
+                name: "Players");
         }
     }
 }

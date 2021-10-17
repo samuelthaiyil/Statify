@@ -53,7 +53,7 @@ th:first-child {
     background-color: white;
     border-radius: 10px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
-    padding: 20px;
+    padding: 50px 60px;
     margin: 10px;
 }
 
@@ -90,7 +90,7 @@ body {
 
 
 .side-nav {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     background-color: red;

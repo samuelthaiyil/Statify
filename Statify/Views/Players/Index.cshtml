@@ -4,7 +4,6 @@
     ViewData["Title"] = "Manage Players | ";
 }
 
- 
 <div class="d-flex flex-row my-5">
     <h1 class="text-dark mr-4">Manage Players</h1>
     <a class="text-dark align-self-center" asp-action="Create">
@@ -12,19 +11,17 @@
         <img class="mr-2 align-bottom" src="~/assets/add_black_24dp.svg" />
     </a>
 </div>
- 
-@foreach (var item in Model) {
-      
-        <div class="player-card">
-            <h3 class="mb-4"><bold>@Html.DisplayFor(modelItem => item.PlayerName)</bold></h3>
-            <p><strong>Player Position: </strong> @Html.DisplayFor(modelItem => item.Position)</p>
-            <p><strong>Player Height (cm): </strong> @Html.DisplayFor(modelItem => item.PlayerHeightCm)</p>
-            <p><strong>Date Of Best Performing Game: </strong> @Html.DisplayFor(modelItem => item.Game.GameDate)</p>
-            <div class="d-flex flex-row mt-4">
-                <a asp-action="Edit" asp-route-id="@item.PlayerId"><img src="~/assets/edit_black_24dp.svg" /></a>
-                <a class="mx-3"asp-action="Details" asp-route-id="@item.PlayerId"><img src="~/assets/info_black_24dp.svg" /></a>
-                <a asp-action="Delete" asp-route-id="@item.PlayerId"><img src="~/assets/delete_black_24dp.svg" /></a>
-            </div>
-        </div>
+
+@foreach (var item in Model)
+{
+<div class="player-card">
+    <h3 class="mb-5"> @Html.DisplayFor(modelItem => item.PlayerName)</h3>
+    <p><strong>Player Height (cm): </strong>@Html.DisplayFor(modelItem => item.PlayerHeightCm)</p>
+    <p><strong>Player Position: </strong>@Html.DisplayFor(modelItem => item.Position)</p>
+    <div class="d-flex flex-row mt-5">
+        <a asp-action="Edit" asp-route-id="@item.PlayerId"><img src="~/assets/edit_black_24dp.svg" /></a>
+        <a class="mx-2" asp-action="Details" asp-route-id="@item.PlayerId"><img src="~/assets/info_black_24dp.svg" /></a>
+        <a asp-action="Delete" asp-route-id="@item.PlayerId"><img src="~/assets/delete_black_24dp.svg" /></a>
+    </div>
+</div>
 }
- 
