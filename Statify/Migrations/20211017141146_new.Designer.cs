@@ -10,7 +10,7 @@ using Statify.Data;
 namespace Statify.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211017033220_new")]
+    [Migration("20211017141146_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

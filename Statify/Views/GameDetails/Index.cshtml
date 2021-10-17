@@ -1,0 +1,66 @@
+﻿@model IEnumerable<StatTracker.Models.GameDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+ 
+<div class="d-flex flex-row my-5">
+    <h1 class="text-dark mr-4">Add Details To Games</h1>
+    <a class="text-dark align-self-center" asp-action="Create">
+        Create New
+        <img class="mr-2 align-bottom" src="~/assets/add_black_24dp.svg" />
+    </a>
+</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Points)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rebounds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assists)
+            </th>
+            <th>
+                Player Name
+            </th>
+            <th>
+                Date Of Game
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Points)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rebounds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assists)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.GameDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GameDetailId"><img src="~/assets/edit_black_24dp.svg" /></a> |
+                <a asp-action="Details" asp-route-id="@item.GameDetailId"><img src="~/assets/info_black_24dp.svg" /></a> |
+                <a asp-action="Delete" asp-route-id="@item.GameDetailId"><img src="~/assets/delete_black_24dp.svg" />Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
