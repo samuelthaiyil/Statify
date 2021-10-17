@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StatTracker.Controllers
 {
-    public class ManageGamesController : Controller
+    public class PlayersController : Controller
     {
         public IActionResult Index()
         {
