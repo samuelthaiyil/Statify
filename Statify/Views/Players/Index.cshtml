@@ -16,9 +16,9 @@
 {
 <div class="player-card">
     <h3 class="mb-5"> @Html.DisplayFor(modelItem => item.PlayerName)</h3>
-    <p><strong>Player Height (cm): </strong>@Html.DisplayFor(modelItem => item.PlayerHeightCm)</p>
+    <p><strong>Player Height: </strong>@Html.DisplayFor(modelItem => item.PlayerHeightCm) cm</p>
     <p><strong>Player Position: </strong>@Html.DisplayFor(modelItem => item.Position)</p>
-    <div class="d-flex flex-row mt-5">
+    <div class="d-flex flex-row mt-4">
         <a asp-action="Edit" asp-route-id="@item.PlayerId"><img src="~/assets/edit_black_24dp.svg" /></a>
         <a class="mx-2" asp-action="Details" asp-route-id="@item.PlayerId"><img src="~/assets/info_black_24dp.svg" /></a>
         <a asp-action="Delete" asp-route-id="@item.PlayerId"><img src="~/assets/delete_black_24dp.svg" /></a>

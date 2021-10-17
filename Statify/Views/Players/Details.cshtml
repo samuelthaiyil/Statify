@@ -4,7 +4,7 @@
     ViewData["Title"] = "Manage Players | ";
 }
 
-<h1>Player Details</h1>
+<h1 class="mt-5">Player Details</h1>
 
 <div>
     <hr />
@@ -22,15 +22,11 @@
             @Html.DisplayFor(model => model.PlayerName)
         </dd>
         <dt class="col-sm-2">
-            Player Height (cm)
+            Player Height
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PlayerHeightCm)
+            @Html.DisplayFor(model => model.PlayerHeightCm) cm
         </dd>
-        <dt class="col-sm-2">
-            Date Of Best Performing Game
-        </dt>
-        
     </dl>
 </div>
 <div>
