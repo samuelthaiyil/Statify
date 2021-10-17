@@ -1,6 +1,6 @@
 # Statify
 
-**Note: All of my old commits are in the default branch**<br />
+**Note: All of my old commits are in the default branch, but please refer to the master branch for marking**<br />
 
 **Link to published site:** https://statify.azurewebsites.net/
 
