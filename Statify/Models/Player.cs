@@ -17,5 +17,7 @@ namespace StatTracker.Models
         public string PlayerName { get; set; }
 
         public int PlayerHeightCm { get; set; }
+
+        public List<GameDetail> GameDetails { get; set; }
     }
 }

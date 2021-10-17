@@ -8,9 +8,11 @@ namespace StatTracker.Models
     public class GameDetail
     {
         public int GameDetailId { get; set; }
+        
+        public int Points { get; set; }
 
-        public Game GameId;
+        public int Rebounds { get; set; }
 
-        public Player PlayerId;
+        public int Assists { get; set; }
     }
 }
