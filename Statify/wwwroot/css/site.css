@@ -12,11 +12,7 @@ for details on configuring this project to bundle and minify static web assets. 
   border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -38,6 +34,22 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+th {
+    background-image: linear-gradient(to bottom right, #5f72bd 0%, #9b23ea 100%);
+    color: white;
+     
+}
+
+th:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+}
+
+th:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
 }
 
 button.accept-policy {
@@ -94,7 +106,7 @@ li {
     list-style: none;
 }
 
-ul {
-    margin: 0;
+ul{
     padding: 0;
+    margin: 0;
 }

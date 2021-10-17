@@ -1,7 +1,7 @@
 ﻿@model StatTracker.Models.Game
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Manage Games | ";
 }
 
 <h1>Game Details</h1>
@@ -30,6 +30,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.GameId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="text-dark" asp-action="Edit" asp-route-id="@Model.GameId">Edit</a> |
+    <a class="text-dark" asp-action="Index">Back to List</a>
 </div>

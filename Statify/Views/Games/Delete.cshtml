@@ -1,12 +1,11 @@
 ﻿@model StatTracker.Models.Game
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Manage Games | ";
 }
 
-<h1>Delete</h1>
+<h1>Delete Game</h1>
 
-<h3>Are you sure you want to game from location '@Html.DisplayNameFor(model => model.GameLocation)'?</h3>
 <div>
     <h4>Game</h4>
     <hr />
@@ -34,6 +33,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="GameId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a class="text-dark" asp-action="Index">Back to List</a>
     </form>
 </div>

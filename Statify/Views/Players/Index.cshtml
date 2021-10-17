@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<StatTracker.Models.Player>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Manage Players | ";
 }
 
  
@@ -27,7 +27,9 @@
             <th>
                 Date Of Best Performing Game
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -46,9 +48,10 @@
                 @Html.DisplayFor(modelItem => item.Game.GameDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PlayerId"><img src="~/assets/edit_black_24dp.svg" /></a> |
+                <a asp-action="Details" asp-route-id="@item.PlayerId"><img src="~/assets/info_black_24dp.svg" /></a> |
+                <a asp-action="Delete" asp-route-id="@item.PlayerId"><img src="~/assets/delete_black_24dp.svg" />Delete</a>
             </td>
         </tr>
 }

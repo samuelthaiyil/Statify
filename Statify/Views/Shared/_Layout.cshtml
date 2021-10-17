@@ -11,12 +11,17 @@
     <header>
     </header>
     <div class="side-nav">
-        <ul class="mt-5">
-
+        <div class="position-absolute" style="margin-left: 4vw; margin-top: 4vh;">
+            <h2 class="text-white">
+                Statify
+                <img src="~/assets/sports_basketball_white_24dp.svg" />
+            </h2>
+        </div>
+        <ul style="margin-top: 20vh;">
             <li class="my-3">
                 <a asp-area="" asp-controller="Home" asp-action="Index">
                     <img class="ml-4 mr-3 align-bottom" src="~/assets/home_white_24dp.svg" />
-                    Landing Page
+                    Home
                 </a>
             </li>
             <li class="my-3">
@@ -34,7 +39,7 @@
             <li class="my-3">
                 <a asp-area="" asp-controller="GameDetails" asp-action="Index">
                     <img class="ml-4 mr-3" src="~/assets/event_white_24dp.svg" />
-                    Add Game Details
+                    Manage Player Stats
                 </a>
             </li>
         </ul>
