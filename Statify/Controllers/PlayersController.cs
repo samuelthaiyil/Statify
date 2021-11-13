@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StatTracker.Models;
 using Statify.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Statify.Controllers
 {
@@ -25,6 +26,7 @@ namespace Statify.Controllers
             return View(await _context.Players.ToListAsync());
         }
 
+        [AllowAnonymous]
         // GET: Players/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +45,7 @@ namespace Statify.Controllers
             return View(player);
         }
 
+        [Authorize]
         // GET: Players/Create
         public IActionResult Create()
         {
@@ -65,6 +68,7 @@ namespace Statify.Controllers
             return View(player);
         }
 
+        [Authorize]
         // GET: Players/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -117,6 +121,7 @@ namespace Statify.Controllers
         }
 
         // GET: Players/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
