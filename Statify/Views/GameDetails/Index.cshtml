@@ -52,11 +52,16 @@
                 @Html.DisplayFor(modelItem => item.Game.GameDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.GameDetailId"><img src="~/assets/edit_black_24dp.svg" /></a> |
-                <a asp-action="Details" asp-route-id="@item.GameDetailId"><img src="~/assets/info_black_24dp.svg" /></a> |
-                <a asp-action="Delete" asp-route-id="@item.GameDetailId"><img src="~/assets/delete_black_24dp.svg" />Delete</a>
-
-            </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.GameDetailId"><img src="~/assets/edit_black_24dp.svg" /></a>
+                }
+                <a asp-action="Details" asp-route-id="@item.GameDetailId"><img src="~/assets/info_black_24dp.svg" /></a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.GameDetailId"><img src="~/assets/delete_black_24dp.svg" />Delete</a>
+                }
+             </td>
         </tr>
 }
     </tbody>

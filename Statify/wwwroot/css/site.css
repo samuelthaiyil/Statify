@@ -42,6 +42,11 @@ th {
      
 }
 
+
+.user-creds {
+    margin-left: 30px;
+}
+
 th:first-child {
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
