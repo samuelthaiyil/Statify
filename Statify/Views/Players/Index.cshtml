@@ -19,9 +19,15 @@
     <p><strong>Player Height: </strong>@Html.DisplayFor(modelItem => item.PlayerHeightCm) cm</p>
     <p><strong>Player Position: </strong>@Html.DisplayFor(modelItem => item.Position)</p>
     <div class="d-flex flex-row mt-4">
-        <a asp-action="Edit" asp-route-id="@item.PlayerId"><img src="~/assets/edit_black_24dp.svg" /></a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Edit" asp-route-id="@item.PlayerId"><img src="~/assets/edit_black_24dp.svg" /></a>
+        }
         <a class="mx-2" asp-action="Details" asp-route-id="@item.PlayerId"><img src="~/assets/info_black_24dp.svg" /></a>
-        <a asp-action="Delete" asp-route-id="@item.PlayerId"><img src="~/assets/delete_black_24dp.svg" /></a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Delete" asp-route-id="@item.PlayerId"><img src="~/assets/delete_black_24dp.svg" /></a>
+        }
     </div>
 </div>
 }
