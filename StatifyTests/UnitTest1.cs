@@ -101,6 +101,16 @@ namespace StatifyTests
         }
 
         [TestMethod]
+        public void EditViewLoadsCorrectPlayerModel()
+        {
+            var result = playerController.Edit(3);
+            var viewResult = (ViewResult)result.Result;
+            Player playerModel = (Player)viewResult.Model;
+
+            Assert.AreEqual(_context.Players.Find(3), playerModel);
+        }
+
+        [TestMethod]
         public void CreateViewLoads()
         {
             var result = playerController.Create();
@@ -130,6 +140,97 @@ namespace StatifyTests
      
             Assert.AreEqual("Create", viewResult.ViewName);
             Assert.IsNotNull("Create", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteReturnsErrorWhenNullId()
+        {
+            var result = playerController.Delete(null);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Error", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteReturnsErrorWhenInvalidId()
+        {
+            var result = playerController.Delete(-1);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Error", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteRedirectsToIndexAfterConfirmation()
+        {
+            var result = playerController.DeleteConfirmed(2);  
+            var actionResult = (RedirectToActionResult)result.Result;
+
+            Assert.AreEqual("Index", actionResult.ActionName);
+        }
+
+        [TestMethod]
+        public void DeleteSuccessfulAfterConfirmation()
+        {
+            var result = playerController.DeleteConfirmed(3); 
+            var product = _context.Players.Find(3);
+
+            Assert.AreEqual(product, null);
+        }
+
+        [TestMethod]
+        public void DeleteViewLoads()
+        {
+            var result = playerController.Delete(1);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Delete", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void DeletedPlayerIsCorrectPlayer()
+        {
+            var result = playerController.Delete(2); 
+            var viewResult = (ViewResult)result.Result;
+            Player player = (Player)viewResult.Model;
+
+            Assert.AreEqual(players[1], player);
+        }
+
+        [TestMethod]
+        public void DetailsViewLoadsCorrectPlayer()
+        {
+            var result = playerController.Details(players[0].PlayerId);
+            var viewResult = (ViewResult)result.Result;
+     
+            Assert.AreEqual(players[0], viewResult.Model);
+        }
+
+        [TestMethod]
+        public void DetailsReturnsErrorWhenNullId()
+        {
+            var result = playerController.Details(null);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Error", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsReturnsErrorWhenInvalidId()
+        {
+            var result = playerController.Details(-1);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Error", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsViewLoads()
+        {
+            var result = playerController.Details(players[0].PlayerId);
+            var viewResult = (ViewResult)result.Result;
+            
+            Assert.AreEqual("Details", viewResult.ViewName);
         }
     }
 }

@@ -32,17 +32,17 @@ namespace Statify.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
             var player = await _context.Players
                 .FirstOrDefaultAsync(m => m.PlayerId == id);
             if (player == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
-            return View(player);
+            return View("Details", player);
         }
 
         [Authorize]
@@ -126,17 +126,17 @@ namespace Statify.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
             var player = await _context.Players
                 .FirstOrDefaultAsync(m => m.PlayerId == id);
             if (player == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
-            return View(player);
+            return View("Delete", player);
         }
 
         // POST: Players/Delete/5
