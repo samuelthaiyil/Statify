@@ -1,5 +1,7 @@
 # Statify
 
+**Tests are in UnitTest1 file in StatifyTests project**
+
 **Note: All of my old commits are in the default branch, but please refer to the master branch for marking**<br />
 
 **Link to published site:** https://statify.azurewebsites.net/
