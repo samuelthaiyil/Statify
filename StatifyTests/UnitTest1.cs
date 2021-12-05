@@ -29,8 +29,9 @@ namespace StatifyTests
             players.Add(new Player { Position = "SF", PlayerName = "LeBron James", PlayerHeightCm = 210, PlayerId = 1 });
             players.Add(new Player { Position = "PG", PlayerName = "Russell Westbrook", PlayerHeightCm = 190, PlayerId = 2 });
             players.Add(new Player { Position = "C", PlayerName = "Anthony Davis", PlayerHeightCm = 215, PlayerId = 3 });
+            players.Add(new Player { Position = "PG", PlayerName = "Rajon Rondo", PlayerHeightCm = 186, PlayerId = 4 });
 
-            foreach(var p in players)
+            foreach (var p in players)
             {
                 _context.Players.Add(p);
             }
@@ -59,6 +60,76 @@ namespace StatifyTests
             var viewResult = (ViewResult)result.Result;
 
             Assert.AreEqual("Index", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void EditRedirectsToIndexAfterSave()
+        {
+            var player = players[3];
+            player.PlayerHeightCm = 209;
+            var result = playerController.Edit(player.PlayerId, player);
+            var redirectResult = (RedirectToActionResult)result.Result;
+
+            Assert.AreEqual("Index", redirectResult.ActionName);
+        }
+
+        [TestMethod]
+        public void EditReturnsErrorWhenNullId()
+        {
+            var result = playerController.Edit(null);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Error", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void EditReturnsErrorWhenInvalidId()
+        {
+            var result = playerController.Edit(-1);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Error", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void EditViewLoads()
+        {
+            var result = playerController.Edit(1);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Edit", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void CreateViewLoads()
+        {
+            var result = playerController.Create();
+            var viewResult = (ViewResult)result;
+
+            Assert.AreEqual("Create", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void CreatePlayerSavesToDb()
+        {
+            var newPlayer = new Player { Position = "SF", PlayerName = "Markieff Morris", PlayerHeightCm = 208, PlayerId = 5 };
+
+            _context.Players.Add(newPlayer);
+            _context.SaveChanges();
+
+            Assert.AreEqual(newPlayer, _context.Players.ToArray()[4]);
+        }
+
+        [TestMethod]
+        public void PostCreatePlayerReturnsCreate()
+        {    
+            var player = new Player { };
+            playerController.ModelState.AddModelError("Error Code 1", "Didn't return create or create is null");
+            var result = playerController.Create(player);
+            var viewResult = (ViewResult)result.Result;
+     
+            Assert.AreEqual("Create", viewResult.ViewName);
+            Assert.IsNotNull("Create", viewResult.ViewName);
         }
     }
 }

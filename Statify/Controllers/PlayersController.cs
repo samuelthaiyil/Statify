@@ -49,7 +49,7 @@ namespace Statify.Controllers
         // GET: Players/Create
         public IActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: Players/Create
@@ -65,7 +65,7 @@ namespace Statify.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(player);
+            return View("Create", player);
         }
 
         [Authorize]
@@ -74,15 +74,15 @@ namespace Statify.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
             var player = await _context.Players.FindAsync(id);
             if (player == null)
             {
-                return NotFound();
+                return View("Error");
             }
-            return View(player);
+            return View("Edit", player);
         }
 
         // POST: Players/Edit/5
@@ -108,7 +108,7 @@ namespace Statify.Controllers
                 {
                     if (!PlayerExists(player.PlayerId))
                     {
-                        return NotFound();
+                        return View("Error");
                     }
                     else
                     {
@@ -117,7 +117,7 @@ namespace Statify.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(player);
+            return View("Edit", player);
         }
 
         // GET: Players/Delete/5
