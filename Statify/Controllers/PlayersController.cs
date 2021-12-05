@@ -23,7 +23,7 @@ namespace Statify.Controllers
         // GET: Players
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Players.ToListAsync());
+            return View("Index", await _context.Players.OrderBy(player => player.PlayerName).ToListAsync());
         }
 
         [AllowAnonymous]
