@@ -4,8 +4,6 @@
 
 **Note: All of my old commits are in the default branch, but please refer to the master branch for marking**<br />
 
-**Link to published site:** https://statify.azurewebsites.net/
-
 Welcome to Statify, the world's most advanced stat tracker, Statify allows you to manage your players and games your team plays, you can perform CRUD operations on players, games and players game stats.
 
 **Site Map:**<br />
