@@ -9,9 +9,7 @@ Welcome to Statify, the world's most advanced stat tracker, Statify allows you t
     **"Manage Players" option** - Goes to page that allows you to perform CRUD operations on players<br />
     **"Manage Games" option** - Goes to page that allows you to perform CRUD operations on games <br />
     **"Manage Player Stats" option** - Goes to page that allows you to perform CRUD operations on players game stats<br />
-    
-   **Important note: Please start by creating a game as both players and player stats rely on having a game**<br />
-   
-   Edit & Delete only available to authenitcated users
+
+   Edit & Delete only available to auth'd users
  
  All icons used from: https://fonts.google.com/icons
